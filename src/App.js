@@ -10,12 +10,13 @@ import { useState } from 'react'
 
 function App() {
   const [hamburger, setHamburger] = useState(true);
+  const [status, setStatus] = useState(true);
 
   return (
     <div className='container mx-auto p-3'>
       {/* INFORMATION MOBILE START */}
       <div className={hamburger ? 'hidden' : 'block'}>
-        <div className='left-0 top-0 absolute w-full grid grid-cols-[350px_auto] h-full'>
+        <div className={`left-0 top-0 absolute w-full grid grid-cols-[350px_auto] h-full `}>
           <div className='bg-white w-full'>
 
             <img src={banner} alt="" className='object-none h-24' />
@@ -26,14 +27,25 @@ function App() {
             <h2 className='text-xl text-center font-bold'>Mitramas Infosys Global</h2>
             <h5 className='text-slate-400 text-center'>Layanan IT</h5>
 
-            <div className='flex justify-center items-center gap-3 my-6'>
+            <div className='flex justify-center items-center gap-3 my-6 cursor-pointer'>
               <img src={logoEdit} alt="" />
               <h5 className='text-green-700 font-semibold'>Sunting profil</h5>
             </div>
 
             <div className='px-5 pb-10'>
               <h5 className='text-slate-400 font-semibold'>Status Perusahaan</h5>
-              <h4 className='text-green-700 font-bold'>Aktif</h4>
+              <div className='flex justify-between items-center'>
+                <h4 className='text-green-700 font-bold'>{status ? 'Aktif' : "Tidak Aktif"}</h4>
+                <div className={`cursor-pointer w-10 h-6 rounded-full flex items-center p-1 ${status ? 'bg-green-700' : 'bg-slate-500'}`} onClick={() => {
+                  if (status) {
+                    setStatus(false)
+                  } else {
+                    setStatus(true)
+                  }
+                }}>
+                  <div className={`h-full w-4 bg-white rounded-full transition duration-200 ${status ? 'translate-x-4' : ''}`} />
+                </div>
+              </div>
 
               <h5 className='text-slate-400 font-semibold mt-3'>Singkatan</h5>
               <h4>MIG</h4>
@@ -59,7 +71,7 @@ function App() {
             </div>
           </div>
 
-          <div className='bg-slate-700 opacity-70' onClick={() => setHamburger(true)}></div>
+          <div className='bg-slate-700 opacity-70 w-screen' onClick={() => setHamburger(true)}></div>
         </div>
       </div>
       {/* INFORMATION MOBILE END */}
@@ -78,17 +90,70 @@ function App() {
         <div className='bg-slate-500 w-8 h-8 rounded-full cursor-pointer'></div>
         <h5 className="cursor-pointer text-lg">John Doe</h5>
       </div>
-      <div className='flex gap-3 mb-8'>
-        <h4 className='text-lg text-slate-400'>Perusahaan</h4>
-        <h4 className='text-lg text-slate-400'>{'>'}</h4>
-        <h4 className='text-lg font-bold text-slate-600'>Mitramas Infosys Global</h4>
+      <div className='flex gap-3 mb-8 xl:top-4 xl:absolute'>
+        <h4 className='text-md text-slate-400'>Perusahaan</h4>
+        <h4 className='text-md text-slate-400'>{'>'}</h4>
+        <h4 className='text-md font-bold text-slate-600'>Mitramas Infosys Global</h4>
       </div>
       {/* HEADER END */}
 
       <div className='xl:grid xl:grid-cols-[300px_auto] xl:gap-5'>
-        <div className='bg-red-500 hidden xl:block'>
-asdf
+
+        {/* INFORMATION DEKSTOP START */}
+        <div className='bg-white hidden xl:block xl:rounded-xl overflow-hidden shadow-xl xl:mb-5'>
+          <img src={banner} alt="" className='object-none h-24' />
+          <div className='w-24 h-24 rounded-full overflow-hidden mx-auto -mt-11 border border-slate-400 mb-5'>
+            <img src={pp} alt="" />
+          </div>
+
+          <h2 className='text-xl text-center font-bold'>Mitramas Infosys Global</h2>
+          <h5 className='text-slate-400 text-center'>Layanan IT</h5>
+
+          <div className='flex justify-center items-center gap-3 my-6 cursor-pointer'>
+            <img src={logoEdit} alt="" />
+            <h5 className='text-green-700 font-semibold'>Sunting profil</h5>
+          </div>
+
+          <div className='px-5 pb-10'>
+            <h5 className='text-slate-400 font-semibold'>Status Perusahaan</h5>
+            <div className='flex justify-between items-center'>
+              <h4 className='text-green-700 font-bold'>{status ? 'Aktif' : "Tidak Aktif"}</h4>
+              <div className={`cursor-pointer w-10 h-6 rounded-full flex items-center p-1 ${status ? 'bg-green-700' : 'bg-slate-500'}`} onClick={() => {
+                if (status) {
+                  setStatus(false)
+                } else {
+                  setStatus(true)
+                }
+              }}>
+                <div className={`h-full w-4 bg-white rounded-full transition duration-200 ${status ? 'translate-x-4' : ''}`} />
+              </div>
+            </div>
+
+            <h5 className='text-slate-400 font-semibold mt-3'>Singkatan</h5>
+            <h4>MIG</h4>
+
+            <h5 className='text-slate-400 font-semibold mt-3'>Alamat Perusahaan</h5>
+            <h4>Jl. Tebet Raya No. 42, Jakarta Selatan</h4>
+
+            <h5 className='text-slate-400 font-semibold mt-3'>Penanggung Jawab (PIC)</h5>
+            <h4>John Doe</h4>
+
+            <h5 className='text-slate-400 font-semibold mt-3'>Tanggal PKP</h5>
+            <h4>03 Maret 2021</h4>
+
+            <h5 className='text-slate-400 font-semibold mt-3'>E-mail</h5>
+            <h4 className='text-green-700 underline'>mig@mitrasolusi.group</h4>
+
+            <h5 className='text-slate-400 font-semibold mt-3'>No. Telp</h5>
+            <h4 className='text-green-700'>021-5678-1234</h4>
+
+            <h5 className='text-slate-400 font-semibold mt-3'>Situs Web</h5>
+            <h4 className='text-green-700 underline mb-3'>mitramas.com</h4>
+
+          </div>
         </div>
+        {/* INFORMATION DEKSTOP END */}
+
         <div>
           {/* LOCATION START */}
           <div className='bg-white rounded-xl px-5 py-3 mb-5 shadow-lg'>
@@ -125,12 +190,14 @@ asdf
               <div className='bg-white rounded-xl px-5 py-4 lg:max-w-lg mb-5 shadow-lg'>
                 <div className='flex justify-between items-center mb-5'>
                   <h2 className='font-bold text-2xl mb-3'>Akun Bank</h2>
-                  <button className='bg-[#42934A] text-white px-8 py-2 rounded-lg font-semibold hover:opacity-80 transition duration-200'>Tambah Akun Bank</button>
+                  <button className='bg-[#42934A] text-white px-8 py-2 rounded-lg font-semibold hover:opacity-80 transition duration-200'>+ Tambah Akun Bank</button>
                 </div>
 
                 <div>
                   <div className='grid grid-cols-[128px_auto] gap-3 mb-4'>
-                    <div className='bg-yellow-500 h-24 w-32 rounded-lg'></div>
+                    <div className='h-24 w-32 rounded-lg bg-gradient-to-br from-yellow-400 to-lime-700 flex justify-end items-end p-3'>
+                      <h2 className='text-2xl font-bold text-white italic'>Visa</h2>
+                    </div>
                     <div className='h-24'>
                       <div className='flex justify-between items-center'>
                         <h3 className='text-lg font-bold'>Bank KB Bukopin</h3>
@@ -147,7 +214,9 @@ asdf
                   </div>
 
                   <div className='grid grid-cols-[128px_auto] gap-3'>
-                    <div className='bg-yellow-500 h-24 w-32 rounded-lg'></div>
+                    <div className='h-24 w-32 rounded-lg bg-gradient-to-br from-cyan-600 to-cyan-400 flex justify-end items-end p-3'>
+                      <h2 className='text-2xl font-bold text-white italic'>Visa</h2>
+                    </div>
                     <div className='h-24'>
                       <div className='flex justify-between items-center'>
                         <h3 className='text-lg font-bold'>Citibank, NA</h3>
